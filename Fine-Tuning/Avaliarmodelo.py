@@ -8,13 +8,7 @@ sys.stderr = open(os.devnull, 'w')
 logging.set_verbosity_error()
 # Configurações
 MODEL_PATH = "./whisper-small-finetuned"  
-AUDIO_FILE_PATH = "/home/fala-texto/Documents/Fine-Tuning/O abatacepte é usado para tratar artrite reumatoide, ajudando a controlar a inflamação nas articulações.m4a" 
-
-#'O abatacepte é usado para tratar artrite reumatoide, ajudando a controlar a inflamação nas articulações.m4a'
-#'O abciximabe é um medicamento utilizado para evitar a formação de coágulos durante procedimentos cardíacos.m4a'
-#'O ácido nicotínico (niacina) é uma vitamina B3 que ajuda a controlar os níveis de colesterol e triglicerídeos.m4a'
-#'O acompanhamento psicopedagógico ajuda crianças com dificuldades de aprendizagem a desenvolver novas habilidades.m4a'
-#'O adalimumabe é um medicamento usado para tratar doenças autoimunes, como artrite reumatoide e psoríase.m4a'
+AUDIO_FILE_PATH = "CAMINHO DO SEU ARQUIVO DE ÁUDIO" 
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -51,3 +45,4 @@ print("Texto Transcrito:")
 print(texto_transcrito)
 
 print("-" * 30)
+
