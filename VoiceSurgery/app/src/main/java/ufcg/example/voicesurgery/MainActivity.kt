@@ -8,7 +8,8 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.voicesurgery.R
+import ufcg.example.voicesurgery.R
+import ufcg.example.voicesurgery.data.AuthRepository
 import ufcg.example.voicesurgery.services.VoiceCommandProcessor
 import ufcg.example.voicesurgery.services.VoiceRecognizer
 import ufcg.example.voicesurgery.ui.AnswerExtractor
@@ -18,6 +19,7 @@ import ufcg.example.voicesurgery.utils.PermissionManager
 import ufcg.example.voicesurgery.viewmodel.QuizStateManager
 
 class MainActivity : AppCompatActivity() {
+    annotation class LoginResponse
 
     // Gerenciadores e Serviços
     private val stateManager = QuizStateManager()
@@ -31,8 +33,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var container: FrameLayout
     private lateinit var btnNext: Button
     private lateinit var btnFalar: Button
+
+    private lateinit var btnHowto: Button
     private lateinit var textView: TextView
     private lateinit var currentQuestionView: View
+
+    private lateinit var jwtToken: String
+    private val authRepository = AuthRepository() // Crie uma instância do repositório
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,15 +55,47 @@ class MainActivity : AppCompatActivity() {
         container = findViewById(R.id.question_container)
         btnNext = findViewById(R.id.btn_next)
         btnFalar = findViewById(R.id.btnFalar)
+        btnHowto = findViewById(R.id.btnHowto)
 
         // Configura Listeners
         btnNext.setOnClickListener { onNextClicked() }
         btnFalar.setOnClickListener { voiceRecognizer.startListening() }
+        btnHowto.setOnClickListener { mostraInstrucoes() }
+
+        fazerLogin {
+            // Este código aqui (onSuccess) só roda
+            // depois que o login for bem-sucedido
+            textView.text = "Login feito com sucesso!"
+            //Log.d("Login", "Login OK, token pronto para uso.")
+            // Você pode, por exemplo, habilitar botões aqui
+        }
+
         setupVoiceListener()
 
         // Inicia
         PermissionManager.checkAndRequestAudioPermission(this)
         showCurrentQuestion()
+        mostraInstrucoes()
+    }
+
+    private fun fazerLogin(onSuccess: () -> Unit) {
+        // Mostra o status para o usuário ANTES de começar
+        textView.text = "Autenticando..."
+
+        authRepository.login(object : AuthRepository.AuthCallback {
+
+            override fun onSuccess(token: String) {
+                // SUCESSO!
+                jwtToken = token // Salva o token na Activity
+                textView.text = "Login automático realizado" // Atualiza a UI
+                onSuccess() // Chama o callback original (ex: habilitar botões)
+            }
+
+            override fun onError(message: String) {
+                // ERRO!
+                textView.text = message // Mostra o erro na UI
+            }
+        })
     }
 
     private fun setupVoiceListener() {
@@ -129,6 +168,24 @@ class MainActivity : AppCompatActivity() {
                 btnFalar.isEnabled = false
             }
         }
+    }
+
+    private fun mostraInstrucoes() {
+        val alert = AlertDialog.Builder(this)
+            .setTitle("Como Utilizar o aplicativo")
+            .setMessage("Aperte o botão 'Falar' e pronuncie a informação referente ao campo mostrado na parte superior da tela.\n" +
+                    "Caso necessário, utilize o teclado virtual para eventuais correções ou marcações para campos objetivos")
+            .setPositiveButton("Fechar") { _, _ ->
+                /*salvarRespostasEmCSV()
+                currentIndex = 0
+                answers.clear() // se quiser limpar as respostas, opcional
+                showCurrentQuestion()*/
+                //colocar o migué do enviar arquivo por aqui (no caso foi na função 'salvarrespostas')
+            }
+            //.setNegativeButton("Não enviar agora", null)
+            .create()
+
+        alert.show()
     }
 
     override fun onDestroy() {

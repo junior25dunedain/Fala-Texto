@@ -6,7 +6,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import com.example.voicesurgery.R//Aqui pode conflitar algo?
+import ufcg.example.voicesurgery.R//Aqui pode conflitar algo?
 import ufcg.example.voicesurgery.data.Question
 
 class VoiceCommandProcessor {
@@ -27,6 +27,9 @@ class VoiceCommandProcessor {
             questionTitle.startsWith("Nome", true) && command.contains("nome", true) ->
                 input?.setText(command.substringAfter("nome ").trim())
 
+            questionTitle.startsWith("Data de Nascimento", true) && command.contains("nascimento", true) ->
+                input?.setText(command.substringAfter("nascimento ").trim())
+
             questionTitle.startsWith("Prontuário", true) ->
                 input?.setText(command.substringAfter("prontuário ").trim())
 
@@ -46,6 +49,13 @@ class VoiceCommandProcessor {
                 else if (command.contains("sim", true)) marcarRadio(view, "Sim")
             }
 
+            questionTitle.endsWith("segurança anestésica:", true) -> {
+                if (command.contains("montagem da so", ignoreCase = true) or command.contains("de acordo com o procedimento", ignoreCase = true)) marcarCheckbox(view,"Montagem da SO de acordo com o procedimento")
+                if (command.contains("Material anestésico disponível", ignoreCase = true)) marcarCheckbox(view, "Material anestésico disponível, revisados e funcionantes")
+            }
+            questionTitle.endsWith("(Outro):", true) ->
+                input?.setText(command.trim())
+
             // ... (Adicionar TODOS os outros blocos if/else aqui) ...
             // Ex:
             questionTitle.startsWith("Via aérea difícil", true) -> {
@@ -53,8 +63,143 @@ class VoiceCommandProcessor {
                 else if (command.contains("sim", true)) marcarRadio(view, "Sim e equipamento/assistência disponíveis")
             }
 
+            questionTitle.startsWith("Risco de grande perda", true) -> {
+                if (command.contains("não", true)) marcarCheckbox(view, "Não")
+                if (command.contains("sim", true)) marcarCheckbox(view, "Sim")
+                if (command.contains("reserva de sangue disponível", true)) marcarCheckbox(view, "Reserva de Sangue Disponível")
+            }
+
+            questionTitle.startsWith("Acesso Venoso", true) -> {
+                if (command.contains("não", true)) marcarCheckbox(view, "Não")
+                if (command.contains("sim", true)) marcarCheckbox(view, "Sim")
+                if (command.contains("providenciado", true)) marcarCheckbox(view, "Providenciado na SO")
+            }
+
+            questionTitle.startsWith("Histórico de reação", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
             questionTitle.endsWith("Qual?:", true) ->
                 input?.setText(command)
+
+            questionTitle.startsWith("Apresentação oral de cada", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Cirurgião, o anestesista e equipe de enfermagem confirmam verbalmente", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Antibiótico profilático", true) -> {
+                if (command.contains("não se aplica", true)) marcarRadio(view, "não se aplica")
+                else if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Revisão do cirurgião. Momentos críticos do procedimento", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Revisão do anestesista. Há alguma preocupação", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Revisão da enfermagem. Correta esterilização do material", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Revisão da enfermagem. Placa de eletrocautério", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Revisão da enfermagem. Equipamentos disponíveis", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Revisão da enfermagem. Insumos e instrumentais disponíveis:", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Confirmação do procedimento realizado", true) -> {
+                if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Contagem de compressas", true) -> {
+                if (command.contains("não se aplica", true)) marcarRadio(view, "não se aplica")
+                else if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Compressas entregues", true) ->
+                input?.setText(command.substringAfter("entregues ").trim())
+
+            questionTitle.startsWith("Compressas conferidas", true) ->
+                input?.setText(command.substringAfter("conferidas ").trim())
+
+            questionTitle.startsWith("Contagem de instrumentos", true) -> {
+                if (command.contains("não se aplica", true)) marcarRadio(view, "não se aplica")
+                else if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Instrumentos entregues", true) ->
+                input?.setText(command.substringAfter("entregues ").trim())
+
+            questionTitle.startsWith("Instrumentos conferidos", true) ->
+                input?.setText(command.substringAfter("conferidos ").trim())
+
+            questionTitle.startsWith("Contagem de agulhas", true) -> {
+                if (command.contains("não se aplica", true)) marcarRadio(view, "não se aplica")
+                else if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("agulhas entregues", true) ->
+                input?.setText(command.substringAfter("entregues ").trim())
+
+            questionTitle.startsWith("agulhas conferidas", true) ->
+                input?.setText(command.substringAfter("conferidas ").trim())
+
+            questionTitle.startsWith("Amostra cirúrgica identificada adequadamente", true) -> {
+                if (command.contains("não se aplica", true)) marcarRadio(view, "não se aplica")
+                else if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Requisição completa", true) ->
+                input?.setText(command)
+
+            questionTitle.startsWith("Problema com equipamentos que", true) -> {
+                if (command.contains("não se aplica", true)) marcarRadio(view, "não se aplica")
+                else if (command.contains("não", true)) marcarRadio(view, "Não")
+                else if (command.contains("sim", true)) marcarRadio(view, "Sim")
+            }
+
+            questionTitle.startsWith("Comunicado a enfermeira para providenciar", true) ->
+                input?.setText(command)
+
+            questionTitle.startsWith("Recomendações Cirurgião", true) ->
+                input?.setText(command.substringAfter("cirurgião ").trim())
+
+            questionTitle.startsWith("Recomendações Anestesista", true) ->
+                input?.setText(command.substringAfter(" ").trim())
+
+            questionTitle.startsWith("Recomendações enfermagem", true) ->
+                input?.setText(command.substringAfter(" ").trim())
+
+
+
+
 
             questionTitle.startsWith("Responsável:", true) ->
                 input?.setText(command.substringAfter("responsável ").trim())

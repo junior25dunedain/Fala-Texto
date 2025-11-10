@@ -6,7 +6,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import com.example.voicesurgery.R
+import ufcg.example.voicesurgery.R
 import ufcg.example.voicesurgery.data.*
 import java.time.LocalTime
 import java.time.temporal.ChronoUnit

@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import com.example.voicesurgery.R
+import ufcg.example.voicesurgery.R
 import ufcg.example.voicesurgery.data.*
 
 class QuestionViewFactory(private val context: Context) {
