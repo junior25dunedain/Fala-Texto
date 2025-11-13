@@ -2,7 +2,7 @@
 
 # Fala-Texto
 
-https://www.youtube.com/watch?v=33JG8wli6h4
+(https://github.com/LAPSI-DEE-UFCG/Fala-Texto/blob/main/VoiceSurgery/apk%2Bpdf/V%C3%ADdeo_Demonstrativo.mp4)
 
 
 <div align="center">
