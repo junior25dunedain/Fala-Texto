@@ -2,6 +2,9 @@
 
 # Fala-Texto
 
+https://www.youtube.com/watch?v=33JG8wli6h4
+
+
 <div align="center">
   <img width="350" height="2000" alt="Image" src="https://github.com/user-attachments/assets/1d1e4d24-db10-4e1a-8598-04288cc1a91a" />
 </div>
