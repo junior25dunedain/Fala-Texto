@@ -18,3 +18,5 @@ Para instalação e uso do aplicativo, siga os seguintes passos:
 6. Leia as instruções de uso ou veja o vídeo abaixo para demonstração.
 
 🎬 [Clique aqui para assistir ao vídeo de demonstração](VoiceSurgery/Apresentacao.mp4)
+
+🎬 [Clique aqui para assistir ao vídeo de demonstração](https://github.com/junior25dunedain/Fala-Texto/blob/main/VoiceSurgery/Apresentacao.mp4?raw=true)
