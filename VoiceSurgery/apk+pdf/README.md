@@ -18,3 +18,8 @@ Para instalação e uso do aplicativo, siga os seguintes passos:
 6. Leia as instruções de uso ou veja o vídeo abaixo (ou no link) para demonstração.
 
 [Assista ao vídeo](VoiceSurgery/apk+pdf/Apresentacao.mp4)
+
+<video width="640" height="360" controls>
+  <source src="VoiceSurgery/apk+pdf/Apresentacao.mp4" type="video/mp4">
+  Seu navegador não suporta vídeo.
+</video>
