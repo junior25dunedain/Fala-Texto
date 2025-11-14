@@ -17,6 +17,4 @@ Para instalação e uso do aplicativo, siga os seguintes passos:
 5. Ao abrir o aplicativo, permita que o mesmo grave áudio 'Durante o uso do app'
 6. Leia as instruções de uso ou veja o vídeo abaixo para demonstração.
 
-🎬 [Clique aqui para assistir ao vídeo de demonstração](VoiceSurgery/Apresentacao.mp4)
-
-🎬 [Clique aqui para assistir ao vídeo de demonstração](https://github.com/junior25dunedain/Fala-Texto/blob/main/VoiceSurgery/Apresentacao.mp4?raw=true)
+🎬 [Clique aqui para baixar o vídeo de demonstração](https://github.com/junior25dunedain/Fala-Texto/raw/main/VoiceSurgery/Apresentacao.mp4)
