@@ -112,6 +112,7 @@ def listar_campos_pdf(pdf_path: str) -> Dict[str, Optional[str]]:
             for w in doc.load_page(i).widgets() or []:
                 key = f"{w.field_name}|{w.field_type}"
                 campos[key] = None
+        doc.close()
         return campos
     except Exception as e:
         return {"error": str(e)}
@@ -605,6 +606,7 @@ async def preencher_pdf(
     return FileResponse(path=out_fp, filename=os.path.basename(out_fp),
                         media_type="application/pdf",
                         background=background_tasks) 
+
 
 
 
