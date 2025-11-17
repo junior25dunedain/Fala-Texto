@@ -5,7 +5,6 @@
 <div align="center">
   <img width="350" height="2000" alt="Image" src="https://github.com/user-attachments/assets/1d1e4d24-db10-4e1a-8598-04288cc1a91a" />
 </div>
-O projeto Conversão Fala-Texto apresenta uma tecnologia promissora para o reconhecimento de voz, oferecendo uma solução eficaz para a documentação clínica. Esta tecnologia permite que a validação dos dados possa ocorrer simultaneamente ao preenchimento das informações, permitindo que os profissionais de saúde registrem informações de forma mais rápida e precisa. Essa protótipo visa melhorar a captura de dados médicos, reduzir a carga de trabalho dos profissionais de saúde e aprimorar o  a precisão das informações coletadas nos procedimentos de saúde. 
 
 ## Desenvolvimento do app android baseado no Kivy
 
